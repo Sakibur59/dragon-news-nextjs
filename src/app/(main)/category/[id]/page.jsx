@@ -1,21 +1,10 @@
 import LeftSideBar from "@/Component/homepage/LeftSideBar";
+import NewsCard from "@/Component/homepage/NewsCard";
 import RightSideBar from "@/Component/homepage/RightSideBar";
+import { getCategories, getNewsByCategoryId } from "@/lib/data";
 import React from "react";
 
-async function getCategories() {
-  const res = await fetch(
-    "https://openapi.programming-hero.com/api/news/categories",
-  );
-  const data = await res.json();
-  return data.data;
-}
-async function getNewsByCategoryId(category_id) {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/category/${category_id}`,
-  );
-  const data = await res.json();
-  return data.data;
-}
+
 
 const NewsCategoryPage = async ({ params }) => {
   const { id } = await params;
@@ -28,11 +17,11 @@ const NewsCategoryPage = async ({ params }) => {
       <div className="col-span-3  p-2">
         <LeftSideBar categories={categories} activeId={id}></LeftSideBar>
       </div>
-      <div className="font-bold col-span-6 p-2">
-        All News
-        <div className="space-y-4">
+      <div className="col-span-6 p-2">
+        <h2 className="font-bold text-lg">News By Category</h2>
+        <div className="space-y-4 mt-6">
           {news.length>0 ? news.map((n) => {
-            return <div key={n._id}>{n.title}</div>;
+            return <NewsCard key={n._id} news={n}></NewsCard>;
           }):<h2 className="font-bold text-5xl text-center my-7">No News Found!</h2>}
         </div>
       </div>
