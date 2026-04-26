@@ -24,7 +24,7 @@ const NewsCard = ({ news }) => {
         </div>
     </div>
     <h2 className="card-title">{news.title}</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    
      <figure>
     <Image
       src={news.image_url}
