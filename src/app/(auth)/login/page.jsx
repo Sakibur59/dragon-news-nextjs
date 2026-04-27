@@ -22,6 +22,12 @@ const LoginPage = () => {
       callbackURL: "/",
     });
     console.log(res, error);
+    if(error){
+      alert(error.message);
+    }
+    if(res){
+      alert("SignIn Successful");
+    }
   };
   return (
     <div className="w-300 mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100">
