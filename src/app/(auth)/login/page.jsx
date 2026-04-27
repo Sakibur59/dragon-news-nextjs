@@ -1,12 +1,24 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  const { register, handleSubmit,formState: { errors } } = useForm();
-  const handleLoginFunc = (data) => {
-    console.log(data)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handleLoginFunc = async (data) => {
+    console.log(data);
+    const { data: res, error } = await authClient.signIn.email({
+      email: data.email, // required
+      password: data.password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    console.log(res, error);
   };
   return (
     <div className="w-300 mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100">
@@ -21,22 +33,28 @@ const LoginPage = () => {
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Email Address</legend>
             <input
-              {...register("email",{ required: "Email field is required"})}
+              {...register("email", { required: "Email field is required" })}
               type="email"
               className="input"
               placeholder="Type your Email"
             />
-            {errors.email &&  <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Password</legend>
             <input
-              {...register("password",{ required: "Password field is required"})}
+              {...register("password", {
+                required: "Password field is required",
+              })}
               type="password"
               className="input"
               placeholder="Enter your Password"
             />
-            {errors.password &&  <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
           </fieldset>
           <button className="btn bg-slate-800 text-white w-full">Login</button>
         </form>
