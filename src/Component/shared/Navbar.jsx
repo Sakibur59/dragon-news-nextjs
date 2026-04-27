@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import userAvatar from "@/assets/user.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,7 @@ const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
   console.log(user);
+
   return (
     <div className="w-300 mx-auto flex justify-between  mt-6">
       <div></div>
