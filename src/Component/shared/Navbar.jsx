@@ -37,6 +37,7 @@ const Navbar = () => {
             height={60}
           ></Image>
           <button className="btn bg-purple-500 text-white" onClick={async ()=>await authClient.signOut()}>Logout</button>
+          <Link href={'/my-profile'}><button className="btn bg-purple-500 text-white">Profile Update</button></Link>
         </div>
       ) : (
         <button className="btn bg-purple-500 text-white">
