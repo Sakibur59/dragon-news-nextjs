@@ -1,5 +1,6 @@
 import {Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
       data-theme="light"
       className={`h-full antialiased`}
     >
-      <body className={`${poppins.className} min-h-full flex flex-col`}>{children}</body>
+      <body className={`${poppins.className} min-h-full flex flex-col`}>{children}
+        <ToastContainer />
+      </body>
     </html>
   );
 }

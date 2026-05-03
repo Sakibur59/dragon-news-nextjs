@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
     const [isShowPassword,setIsShowPassword] = useState(false);
@@ -23,10 +24,10 @@ const LoginPage = () => {
     });
     console.log(res, error);
     if(error){
-      alert(error.message);
+      toast.error(error.message);
     }
     if(res){
-      alert("SignIn Successful");
+      toast.success("SignIn Successful");
     }
   };
   return (

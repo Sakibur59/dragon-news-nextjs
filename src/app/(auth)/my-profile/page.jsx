@@ -1,15 +1,16 @@
-'use client'
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import { toast } from "react-toastify";
 
 const MyProfilePage = () => {
-    const {
+  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+ 
   return (
     <div className="w-300 mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100">
       <div className="px-20 py-20 rounded-xl bg-white">
@@ -20,7 +21,7 @@ const MyProfilePage = () => {
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Name</legend>
             <input
-              {...register("name",{required:"Name field is required"})}
+              {...register("name", { required: "Name field is required" })}
               type="text"
               className="input"
               placeholder="Type your Name"
